@@ -1,8 +1,7 @@
 import './styles/global.css';
+import './lib/dayjs'
 import { Header } from "./components/Header";
-import { SummaryTable } from './components/SummaryTable';
-
-// import { Habit } from "./components/Habit"
+import { SummaryTable } from "./components/SummaryTable";
 
 export function App() {
   return (
@@ -14,4 +13,3 @@ export function App() {
     </div>
   )
 }
-
