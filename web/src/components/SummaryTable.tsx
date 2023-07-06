@@ -1,5 +1,5 @@
 import dayjs from "dayjs";
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef } from "react";
 import { api } from "../lib/axios";
 import * as ScrollArea from '@radix-ui/react-scroll-area';
 import { generateDatesFromYearBeginning } from "../utils/generate-dates-from-year-beginning";
@@ -30,7 +30,16 @@ type Summary = {
 
 export function SummaryTable() {
 
-  const [summary, setSummary] = useState<Summary>([])
+  const scrollRef = useRef<HTMLDivElement>(null);
+
+  const [summary, setSummary] = useState<Summary>([]);
+
+  (function () {
+    if (scrollRef.current) {
+      scrollRef.current.scrollLeft = scrollRef.current.scrollWidth;
+      console.log("scroll" + scrollRef);
+    }
+  })();
 
   useEffect(() => {
     api.get('summary').then(response => {
@@ -41,9 +50,9 @@ export function SummaryTable() {
   return (
 
 
-    <ScrollArea.Root className="w-full overflow-hidden">
-      <ScrollArea.Viewport className="w-full h-full" >
-        <div className="w-full flex">
+    <ScrollArea.Root className="w-full overflow-hidden" >
+      <ScrollArea.Viewport className="w-full h-full" ref={scrollRef}>
+        <div className="w-full flex" >
           <div className="grid grid-rows-7 grid-flow-row gap-3 absolute border-r-2 border-r-violet-500">
             {weekDays.map((weekDay, i) => {
               return (
@@ -57,7 +66,7 @@ export function SummaryTable() {
             })}
           </div>
 
-          <div className="grid grid-rows-7 grid-flow-col gap-3 ml-14">
+          <div className="grid grid-rows-7 grid-flow-col gap-3 ml-14 mr-1">
             {summary.length && summaryDates.map((date) => {
 
               const dayInSummary = summary.find(day => {
