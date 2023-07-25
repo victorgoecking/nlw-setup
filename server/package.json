@@ -15,10 +15,12 @@
     "@prisma/client": "^4.15.0",
     "dayjs": "^1.11.8",
     "fastify": "^4.14.0",
+    "web-push": "^3.6.3",
     "zod": "^3.21.4"
   },
   "devDependencies": {
     "@mermaid-js/mermaid-cli": "^10.2.2",
+    "@types/web-push": "^3.3.2",
     "prisma": "^4.15.0",
     "prisma-erd-generator": "^1.6.2",
     "tsx": "^3.12.3",

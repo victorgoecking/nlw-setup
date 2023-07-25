@@ -37,7 +37,6 @@ export function SummaryTable() {
   (function () {
     if (scrollRef.current) {
       scrollRef.current.scrollLeft = scrollRef.current.scrollWidth;
-      console.log("scroll" + scrollRef);
     }
   })();
 
